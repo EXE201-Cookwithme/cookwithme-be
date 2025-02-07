@@ -3,6 +3,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 import { PostModule } from './post/post.module';
 import { CategoryModule } from './category/category.module';
+import { CommentModule } from './comment/comment.module';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -17,6 +18,7 @@ import { CategoryModule } from './category/category.module';
     }),
     PostModule,
     CategoryModule,
+    CommentModule,
   ],
   controllers: [],
   providers: [],
