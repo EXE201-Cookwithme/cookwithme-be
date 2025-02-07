@@ -21,10 +21,10 @@ export class User {
   @Prop({ required: true })
   clerkid: string;
 
-  @Prop([{ type: mongoose.Schema.Types.ObjectId, ref: Post.name }])
+  @Prop([{ type: mongoose.Schema.Types.ObjectId, ref: 'Post' }])
   postId: Post[];
 
-  @Prop([{ type: mongoose.Schema.Types.ObjectId, ref: Comment.name }])
+  @Prop([{ type: mongoose.Schema.Types.ObjectId, ref: 'Comment' }])
   commentId: Comment[];
 
   @Prop({ default: Date.now })

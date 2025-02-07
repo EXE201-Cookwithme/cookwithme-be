@@ -22,10 +22,10 @@ export class Post {
   @Prop({ default: Date.now })
   createAt: Date;
 
-  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: Category.name })
+  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: "Category" })
   categoryId: Category;
 
-  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: User.name })
+  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: "User" })
   userId: User;
 }
 

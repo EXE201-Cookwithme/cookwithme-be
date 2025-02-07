@@ -9,12 +9,11 @@ export type CategoryDocument = HydratedDocument<Comment>;
 export class Comment {
   @Prop({
     type: mongoose.Schema.Types.ObjectId,
-    ref: User.name,
-    required: true,
+    ref: 'User',
   })
   userId: User;
 
-  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: Post.name })
+  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'Post' })
   postId: Post;
 
   @Prop({ required: true })
