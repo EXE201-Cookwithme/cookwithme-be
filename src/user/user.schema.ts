@@ -1,11 +1,18 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import mongoose, { HydratedDocument } from 'mongoose';
 import { Comment } from 'src/comment/comment.schema';
+import { UserPlan, UserRole } from 'src/constants';
 import { Post } from 'src/post/post.schema';
 
 export type UserDocument = HydratedDocument<User>;
 @Schema({ versionKey: false })
 export class User {
+  @Prop({ enum: UserRole, default: UserRole.USER })
+  role: UserRole;
+
+  @Prop({ enum: UserPlan, default: UserPlan.FREE })
+  plan: UserPlan;
+
   @Prop({ required: true })
   email: string;
 
@@ -20,12 +27,6 @@ export class User {
 
   @Prop({ required: true })
   clerkid: string;
-
-  @Prop([{ type: mongoose.Schema.Types.ObjectId, ref: 'Post' }])
-  postId: Post[];
-
-  @Prop([{ type: mongoose.Schema.Types.ObjectId, ref: 'Comment' }])
-  commentId: Comment[];
 
   @Prop({ default: Date.now })
   createdAt: Date;
