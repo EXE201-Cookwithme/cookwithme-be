@@ -1,7 +1,8 @@
-import { Post } from '@nestjs/common';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument } from 'mongoose';
 import * as mongoose from 'mongoose';
+import { Post } from 'src/post/post.schema';
+import { User } from 'src/user/user.schema';
 export type CategoryDocument = HydratedDocument<Comment>;
 
 @Schema({ versionKey: false })
@@ -11,10 +12,10 @@ export class Comment {
     ref: User.name,
     required: true,
   })
-  userId: string;
+  userId: User;
 
   @Prop({ type: mongoose.Schema.Types.ObjectId, ref: Post.name })
-  postId: string;
+  postId: Post;
 
   @Prop({ required: true })
   content: string;

@@ -4,6 +4,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { PostModule } from './post/post.module';
 import { CategoryModule } from './category/category.module';
 import { CommentModule } from './comment/comment.module';
+import { UserModule } from './user/user.module';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -19,6 +20,7 @@ import { CommentModule } from './comment/comment.module';
     PostModule,
     CategoryModule,
     CommentModule,
+    UserModule,
   ],
   controllers: [],
   providers: [],
