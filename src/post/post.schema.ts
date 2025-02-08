@@ -8,7 +8,7 @@ export type PostDocument = HydratedDocument<Post>;
 @Schema({ versionKey: false })
 export class Post {
   @Prop({ required: true })
-  images: string[];
+  image: string;
 
   @Prop({ required: true })
   title: string;
@@ -22,10 +22,10 @@ export class Post {
   @Prop({ default: Date.now })
   createAt: Date;
 
-  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: "Category" })
+  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'Category' })
   categoryId: Category;
 
-  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: "User" })
+  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'User' })
   userId: User;
 }
 
