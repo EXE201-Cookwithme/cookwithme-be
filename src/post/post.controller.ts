@@ -76,6 +76,15 @@ export class PostController {
   //   return this.postService.createPost(userId, createPostDto, image);
   // }
 
+
+  
+
+  @Get()
+  @ApiOperation({ summary: 'Get all posts' })
+  async getPosts() {
+    return this.postService.getPosts();
+  }
+
   @Get('category/:categoryId')
   @ApiOperation({ summary: 'Get posts by category id' })
   async getPostByCategoryId(@Param('categoryId') categoryId: string) {

@@ -46,6 +46,11 @@ export class PostService {
     }
   }
 
+  async getPosts() {
+    const posts = await this.postRepository.getPosts();
+    return { data: posts, message: 'Posts fetched successfully' };
+  }
+
   async getPostByCategoryId(categoryId: string) {
     const posts = await this.postRepository.getPostByCategoryId(categoryId);
     return { data: posts, message: 'Posts fetched successfully' };

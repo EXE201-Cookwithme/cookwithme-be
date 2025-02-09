@@ -22,18 +22,12 @@ export class PostRepository {
   }
 
   async getPosts() {
-    const posts = await this.postModel
-      .find()
-      .populate('userId')
-      .populate('categoryId');
+    const posts = await this.postModel.find().populate('categoryId');
     return posts;
   }
 
   async getPostById(id: string) {
-    const post = await this.postModel
-      .findById(id)
-      .populate('userId')
-      .populate('categoryId');
+    const post = await this.postModel.findById(id).populate('categoryId');
 
     if (!post) {
       throw new NotFoundException('Post not found');
@@ -44,7 +38,6 @@ export class PostRepository {
   async getPostByCategoryId(categoryId: string) {
     const posts = await this.postModel
       .find({ categoryId })
-      .populate('userId')
       .populate('categoryId');
 
     return posts;

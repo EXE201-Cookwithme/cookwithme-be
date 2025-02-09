@@ -7,7 +7,7 @@ import { CreateCommentDto } from './dto/create-comment.dto';
 @Controller('comment')
 export class CommentController {
   constructor(private commentService: CommentService) {}
-
+  
   @Post(':userId')
   @ApiOperation({ summary: 'Create comment' })
   createComment(
