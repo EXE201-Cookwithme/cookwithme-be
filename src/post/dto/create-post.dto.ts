@@ -5,4 +5,5 @@ export class CreatePostDto {
   categoryId: string;
   content: string;
   links: string[];
+  categoryName: string;
 }

@@ -1,6 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Model } from 'mongoose';
+import { Model, Types } from 'mongoose';
 import { Post } from './post.schema';
 import { CreatePostDto } from './dto/create-post.dto';
 
@@ -35,9 +35,11 @@ export class PostRepository {
     return post;
   }
 
-  async getPostByCategoryId(categoryId: string) {
+  async getPostByCategoryName(categoryName: string) {
     const posts = await this.postModel
-      .find({ categoryId })
+      .find({
+        categoryName: categoryName,
+      })
       .populate('categoryId');
 
     return posts;

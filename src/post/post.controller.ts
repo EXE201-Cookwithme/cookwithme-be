@@ -76,19 +76,16 @@ export class PostController {
   //   return this.postService.createPost(userId, createPostDto, image);
   // }
 
-
-  
-
   @Get()
   @ApiOperation({ summary: 'Get all posts' })
   async getPosts() {
     return this.postService.getPosts();
   }
 
-  @Get('category/:categoryId')
-  @ApiOperation({ summary: 'Get posts by category id' })
-  async getPostByCategoryId(@Param('categoryId') categoryId: string) {
-    return this.postService.getPostByCategoryId(categoryId);
+  @Get('category/:categoryName')
+  @ApiOperation({ summary: 'Get posts by categoryName' })
+  async getPostByCategoryId(@Param('categoryName') categoryName: string) {
+    return this.postService.getPostByCategoryId(categoryName);
   }
 
   @Get(':id')

@@ -1,7 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import mongoose, { HydratedDocument } from 'mongoose';
 import { Category } from 'src/category/category.schema';
-import { User } from 'src/user/user.schema';
 
 export type PostDocument = HydratedDocument<Post>;
 
@@ -16,6 +15,9 @@ export class Post {
   @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'Category' })
   categoryId: Category;
 
+  @Prop({ required: true })
+  categoryName: string;
+  
   @Prop({ required: true })
   description: string;
 
