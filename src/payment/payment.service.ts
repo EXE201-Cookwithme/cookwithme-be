@@ -5,9 +5,6 @@ import { PaymentLinkData } from 'src/constants';
 
 dotenv.config();
 
-
-
-
 @Injectable()
 export class PaymentService {
 
