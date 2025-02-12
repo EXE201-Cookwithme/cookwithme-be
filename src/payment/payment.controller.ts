@@ -7,7 +7,7 @@ import { ApiParam } from '@nestjs/swagger';
 export class PaymentController {
   constructor(private readonly paymentService: PaymentService) {}
 
-  @Post('create-payment-link')
+  @Get('create-payment-link')
   async createPaymentLink(@Res() res: Response) {
     try {
       const paymentLinkResponse = await this.paymentService.createPaymentLink();

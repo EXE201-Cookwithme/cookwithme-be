@@ -8,6 +8,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { User } from './user.schema';
 import { CreateUserDto } from './dto/create-user.dto';
+import { UserPlan } from 'src/constants';
 
 @Injectable()
 export class UserRepository {
@@ -35,6 +36,16 @@ export class UserRepository {
     const user = await this.userModel.findOne({ clerkid }).exec();
     if (!user) {
       throw new UnauthorizedException(`User ${clerkid} not found`);
+    }
+    return user;
+  }
+
+  async updatePlanUser(id: string, plan: UserPlan): Promise<User> {
+    const user = await this.userModel
+      .findByIdAndUpdate(id, { plan }, { new: true })
+      .exec();
+    if (!user) {
+      throw new NotFoundException(`User ${id} not found`);
     }
     return user;
   }

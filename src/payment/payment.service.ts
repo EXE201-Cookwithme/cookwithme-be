@@ -3,7 +3,6 @@ import { ConfigService } from '@nestjs/config';
 import PayOS = require('@payos/node');
 import { PaymentLinkData } from 'src/constants';
 
-
 @Injectable()
 export class PaymentService {
   configService = new ConfigService();
@@ -43,8 +42,8 @@ export class PaymentService {
           price: 59000,
         },
       ],
-      returnUrl: this.YOUR_DOMAIN + '/payment-success',
-      cancelUrl: this.YOUR_DOMAIN + '/payment-cancel',
+      returnUrl: this.YOUR_DOMAIN + '/payment/success',
+      cancelUrl: this.YOUR_DOMAIN + '/payment/cancel',
     };
 
     return await this.payOs.createPaymentLink(paymentBody);
