@@ -14,9 +14,15 @@ export class UserController {
     return this.userService.createUser(createUserDto);
   }
 
+  @Get('/plan/:userId')
+  @ApiOperation({ summary: 'Update user plan' })
+  updatePlanUser(@Param('userId') userId: string) {
+    return this.userService.updatePlanUser(userId);
+  }
+
   @Get(':clerkid')
   @ApiOperation({ summary: 'Get user by clerkid' })
   getUserByClerkId(@Param('clerkid') clerkid: string) {
     return this.userService.getUserByClerkId(clerkid);
   }
-} 
+}
