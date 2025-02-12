@@ -33,7 +33,7 @@ export class PaymentService {
   async createPaymentLink(): Promise<any> {
     const paymentBody: PaymentLinkData = {
       orderCode: Number(String(Date.now()).slice(-6)),
-      amount: 2000,
+      amount: 59000,
       description: 'Cookwithme Service',
       items: [
         {
