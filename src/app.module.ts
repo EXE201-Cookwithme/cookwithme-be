@@ -8,6 +8,7 @@ import { UserModule } from './user/user.module';
 import { WorkshopModule } from './workshop/workshop.module';
 import { ConversationModule } from './conversation/conversation.module';
 import { ChatModule } from './chat/chat.module';
+import { PaymentModule } from './payment/payment.module';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -27,8 +28,7 @@ import { ChatModule } from './chat/chat.module';
     WorkshopModule,
     ConversationModule,
     ChatModule,
+    PaymentModule,
   ],
-  controllers: [],
-  providers: [],
 })
 export class AppModule {}
