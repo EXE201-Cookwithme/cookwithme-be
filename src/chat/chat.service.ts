@@ -6,8 +6,9 @@ import {
 } from '@langchain/core/prompts';
 import { LLM, RoleChat } from 'src/constants';
 import { getLLM, getMarkdownMessage } from 'src/utils';
-import { StringOutputParser } from '@langchain/core/dist/output_parsers';
+
 import { AIMessage, HumanMessage } from '@langchain/core/messages';
+import { StringOutputParser } from '@langchain/core/output_parsers';
 @Injectable()
 export class ChatService {
   private readonly logger = new Logger(ChatService.name);
