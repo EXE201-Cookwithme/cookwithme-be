@@ -1,23 +1,28 @@
 import { Injectable } from '@nestjs/common';
 import { CreateConversationDto } from './dto/create-conversation.dto';
 import { ConversationRepository } from './conversation.repository';
+import { ChatService } from 'src/chat/chat.service';
 
 @Injectable()
 export class ConversationService {
-  constructor(private conversationRepository: ConversationRepository) {}
+  constructor(
+    private conversationRepository: ConversationRepository,
+    private chatService: ChatService,
+  ) {}
 
   async createConversation(
     userId: string,
     createConversationDto: CreateConversationDto,
   ) {
     const { prompt, summary } = createConversationDto;
-    //handler ai
-    const contentAi: string = 'Conent ai nhes';
+    const conversations =
+      await this.conversationRepository.getConversationsByUserId(userId);
+    const dataAI = await this.chatService.chat(prompt, conversations, summary);
     const createdConversation =
       await this.conversationRepository.createConversation(
         userId,
         prompt,
-        contentAi,
+        dataAI,
       );
     return { data: createdConversation, message: 'Conversation created' };
   }

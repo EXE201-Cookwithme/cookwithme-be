@@ -12,7 +12,7 @@ export class Conversation {
   @Prop({ required: true })
   content: string;
 
-  @Prop({ required: true })
+  @Prop({ default: new Date() })
   createAt: Date;
 
   @Prop({ required: true })
