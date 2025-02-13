@@ -6,7 +6,7 @@ import {
 } from '@langchain/core/prompts';
 import { LLM, RoleChat } from 'src/constants';
 import { getLLM, getMarkdownMessage } from 'src/utils';
-
+import { DocumentInterface } from '@langchain/core/documents';
 import { AIMessage, HumanMessage } from '@langchain/core/messages';
 import { StringOutputParser } from '@langchain/core/output_parsers';
 @Injectable()
@@ -33,7 +33,7 @@ export class ChatService {
     ]);
     const llm = getLLM(LLM);
     const chain = prompt.pipe(llm).pipe(new StringOutputParser());
-
+    let context: DocumentInterface<Record<string, any>>[] = [];
     const res = await chain.invoke({
       input: promptDto,
       chatHistory: conversationDto.map((message) => {
@@ -43,7 +43,7 @@ export class ChatService {
           return new AIMessage(message.content);
         }
       }),
-      summaryDto,
+      context,
     });
     this.logger.log(`Chat response: ${res}`);
     return getMarkdownMessage(res);
