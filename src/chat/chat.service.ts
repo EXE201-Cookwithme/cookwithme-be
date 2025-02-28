@@ -34,8 +34,19 @@ export class ChatService {
     const llm = getLLM(LLM);
     const chain = prompt.pipe(llm).pipe(new StringOutputParser());
     let context: DocumentInterface<Record<string, any>>[] = [];
+    if (summaryDto.trim().length > 0) {
+      context.push({
+        pageContent: summaryDto,
+        metadata: {
+          source: 'summary',
+        },
+      });
+    }
     const res = await chain.invoke({
-      input: promptDto,
+      input:
+        promptDto.trim().length > 0
+          ? promptDto
+          : 'Tóm tắt tài liệu này, ngôn ngữ của nội dung nấu ăn sẽ giống như ngôn ngữ của tài liệu.',
       chatHistory: conversationDto.map((message) => {
         if (message.role === RoleChat.USER) {
           return new HumanMessage(message.content);

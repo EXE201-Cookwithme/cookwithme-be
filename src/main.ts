@@ -14,6 +14,7 @@ async function bootstrap() {
     .setTitle('Cookwithme Project')
     .setDescription('The Cookwithme API description')
     .setVersion('0.1')
+    .addSecurity('token', { type: 'http', scheme: 'bearer' })
     .build();
 
   const document = SwaggerModule.createDocument(app, config);

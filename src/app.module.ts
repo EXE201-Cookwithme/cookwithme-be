@@ -9,6 +9,7 @@ import { WorkshopModule } from './workshop/workshop.module';
 import { ConversationModule } from './conversation/conversation.module';
 import { ChatModule } from './chat/chat.module';
 import { PaymentModule } from './payment/payment.module';
+import { JwtModule, JwtService } from '@nestjs/jwt';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -17,7 +18,7 @@ import { PaymentModule } from './payment/payment.module';
     MongooseModule.forRootAsync({
       imports: [ConfigModule],
       useFactory: async (configService: ConfigService) => ({
-        uri: configService.get<string>('DATABASE_URL'),
+        uri: configService.get<string>('DATABASE_LOCAL_URL'),
       }),
       inject: [ConfigService],
     }),
