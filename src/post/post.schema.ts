@@ -17,7 +17,10 @@ export class Post {
 
   @Prop({ required: true })
   categoryName: string;
-  
+
+  @Prop({ required: true })
+  content: string;
+
   @Prop({ required: true })
   description: string;
 

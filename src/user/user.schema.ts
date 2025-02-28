@@ -7,6 +7,7 @@ import { Post } from 'src/post/post.schema';
 export type UserDocument = HydratedDocument<User>;
 @Schema({ versionKey: false })
 export class User {
+  _id: string;
   @Prop({ enum: UserRole, default: UserRole.USER })
   role: UserRole;
 
@@ -24,9 +25,6 @@ export class User {
 
   @Prop()
   image: string;
-
-  @Prop({ required: true })
-  clerkid: string;
 
   @Prop({ default: Date.now })
   createdAt: Date;

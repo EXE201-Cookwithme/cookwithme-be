@@ -24,6 +24,10 @@ export class UserRepository {
     return users;
   }
 
+  async getUserByEmail(email: string) {
+    const user = await this.userModel.findOne({ email }).exec();
+    return user;
+  }
   async getUserById(id: string): Promise<User> {
     const user = await this.userModel.findById(id).exec();
     if (!user) {

@@ -34,12 +34,31 @@ export class PaymentService {
     const paymentBody: PaymentLinkData = {
       orderCode: Number(String(Date.now()).slice(-6)),
       amount: 59000,
-      description: 'Cookwithme Service',
+      description: 'Cookwithme gói Pro',
       items: [
         {
           name: 'Register Cookwithme serivice',
           quantity: 1,
-          price: 59000,
+          price: 2000,
+        },
+      ],
+      returnUrl: this.YOUR_DOMAIN + '/payment/success',
+      cancelUrl: this.YOUR_DOMAIN + '/payment/cancel',
+    };
+
+    return await this.payOs.createPaymentLink(paymentBody);
+  }
+
+  async createPaymentLinkTietKiem(): Promise<any> {
+    const paymentBody: PaymentLinkData = {
+      orderCode: Number(String(Date.now()).slice(-6)),
+      amount: 159000,
+      description: 'Cookwithme gói tiết kiệm',
+      items: [
+        {
+          name: 'Register Cookwithme serivice',
+          quantity: 1,
+          price: 2000,
         },
       ],
       returnUrl: this.YOUR_DOMAIN + '/payment/success',

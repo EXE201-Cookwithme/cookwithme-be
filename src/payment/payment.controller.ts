@@ -21,6 +21,21 @@ export class PaymentController {
     }
   }
 
+  @Get('create-payment-link-tiet-kiem')
+  async createPaymentLinkTietkiem(@Res() res: Response) {
+    try {
+      const paymentLinkResponse =
+        await this.paymentService.createPaymentLinkTietKiem();
+      res.json(paymentLinkResponse);
+    } catch (error) {
+      console.error('Payment creation error:', error);
+      res.status(500).json({
+        message: 'Failed to create payment link',
+        error: error.message,
+      });
+    }
+  }
+
   @ApiParam({ name: 'id', type: String })
   @Get('payment-link-information/:id')
   async getPaymentLinkInformation(
