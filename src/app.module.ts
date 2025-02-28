@@ -18,7 +18,7 @@ import { JwtModule, JwtService } from '@nestjs/jwt';
     MongooseModule.forRootAsync({
       imports: [ConfigModule],
       useFactory: async (configService: ConfigService) => ({
-        uri: configService.get<string>('DATABASE_LOCAL_URL'),
+        uri: configService.get<string>('DATABASE_URL'),
       }),
       inject: [ConfigService],
     }),
