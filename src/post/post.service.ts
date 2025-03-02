@@ -46,8 +46,8 @@ export class PostService {
     }
   }
 
-  async getPosts() {
-    const posts = await this.postRepository.getPosts();
+  async getPosts(categoryName: string, keyword: string) {
+    const posts = await this.postRepository.getPosts(categoryName, keyword);
     return { data: posts, message: 'Posts fetched successfully' };
   }
 

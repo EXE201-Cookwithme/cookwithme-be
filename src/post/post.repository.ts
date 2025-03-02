@@ -21,8 +21,18 @@ export class PostRepository {
     return post;
   }
 
-  async getPosts() {
-    const posts = await this.postModel.find().populate('categoryId');
+  async getPosts(categoryName: string, keyword: string) {
+    const filter: Record<string, any> = {};
+
+    if (keyword) {
+      filter.title = { $regex: keyword, $options: 'i' };
+    }
+
+    if (categoryName) {
+      filter.categoryName = categoryName;
+    }
+
+    const posts = await this.postModel.find(filter).populate('categoryId');
     return posts;
   }
 

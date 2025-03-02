@@ -5,6 +5,7 @@ import {
   Get,
   Param,
   Post,
+  Query,
   UploadedFile,
   UseInterceptors,
 } from '@nestjs/common';
@@ -12,6 +13,7 @@ import { PostService } from './post.service';
 import { ApiBody, ApiConsumes, ApiOperation, ApiParam } from '@nestjs/swagger';
 import { CreatePostDto } from './dto/create-post.dto';
 import { FileInterceptor } from '@nestjs/platform-express';
+import { ApiDocsPagination } from 'src/decorators/swagger-form-data.decorator';
 
 @Controller('post')
 export class PostController {
@@ -78,8 +80,12 @@ export class PostController {
 
   @Get()
   @ApiOperation({ summary: 'Get all posts' })
-  async getPosts() {
-    return this.postService.getPosts();
+  @ApiDocsPagination()
+  async getPosts(
+    @Query('categoryName') categoryName: string,
+    @Query('keyword') keyword: string,
+  ) {
+    return this.postService.getPosts(categoryName, keyword);
   }
 
   @Get('category/:categoryName')
