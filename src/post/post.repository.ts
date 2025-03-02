@@ -3,7 +3,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model, Types } from 'mongoose';
 import { Post } from './post.schema';
 import { CreatePostDto } from './dto/create-post.dto';
-
+import { remove as removeDiacritics } from 'diacritics';
 @Injectable()
 export class PostRepository {
   constructor(@InjectModel('Post') private postModel: Model<Post>) {}
@@ -25,7 +25,8 @@ export class PostRepository {
     const filter: Record<string, any> = {};
 
     if (keyword) {
-      filter.title = { $regex: keyword, $options: 'i' };
+      const keywordUnaccent = removeDiacritics(keyword).toLowerCase();
+      filter.titleUnaccent = { $regex: keywordUnaccent, $options: 'i' };
     }
 
     if (categoryName) {
@@ -58,5 +59,14 @@ export class PostRepository {
   async deletePost(id: string) {
     const post = await this.postModel.findByIdAndDelete(id).exec();
     return post;
+  }
+
+  async updateExistingPosts() {
+    const posts = await this.postModel.find();
+    for (const post of posts) {
+      post.titleUnaccent = removeDiacritics(post.title).toLowerCase();
+      await post.save();
+    }
+    console.log('Updated all posts with unaccented titles.');
   }
 }

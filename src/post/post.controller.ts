@@ -4,6 +4,7 @@ import {
   Controller,
   Get,
   Param,
+  Patch,
   Post,
   Query,
   UploadedFile,
@@ -98,5 +99,10 @@ export class PostController {
   @ApiOperation({ summary: 'Get post by id' })
   async getPostById(@Param('id') id: string) {
     return this.postService.getPostById(id);
+  }
+
+  @Post('update')
+  async updateExistingPosts() {
+    return this.postService.updateExistingPosts();
   }
 }

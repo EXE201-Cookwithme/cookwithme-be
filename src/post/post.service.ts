@@ -60,4 +60,9 @@ export class PostService {
     const post = await this.postRepository.getPostById(id);
     return { data: post, message: 'Post fetched successfully' };
   }
+
+  async updateExistingPosts() {
+    const posts = await this.postRepository.updateExistingPosts();
+    return { data: posts, message: 'Posts updated successfully' };
+  }
 }
