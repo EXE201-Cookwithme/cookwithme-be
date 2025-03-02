@@ -12,14 +12,14 @@ export class Post {
   @Prop({ required: true })
   title: string;
 
+  @Prop({ required: true })
+  titleUnaccent: string;
+
   @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'Category' })
   categoryId: Category;
 
   @Prop({ required: true })
   categoryName: string;
-
-  @Prop({ required: true })
-  content: string;
 
   @Prop({ required: true })
   description: string;
