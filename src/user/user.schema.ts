@@ -20,7 +20,7 @@ export class User {
   @Prop({ required: true })
   firstname: string;
 
-  @Prop({ required: true })
+  @Prop({ required: true, default: '' })
   lastname: string;
 
   @Prop()
